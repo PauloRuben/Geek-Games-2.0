@@ -22,6 +22,7 @@
                 --success: #2a9d8f;
                 --error: #e63946;
                 --warning: #f4a261;
+                --info: #4361ee;
                 --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                 --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
                 --radius: 8px;
@@ -45,7 +46,7 @@
                 flex-direction: column;
             }
             
-            /* Header - Melhorado */
+            /* Header */
             header {
                 background: linear-gradient(135deg, var(--dark-blue) 0%, var(--medium-blue) 100%);
                 color: var(--text-light);
@@ -217,7 +218,7 @@
                 100% { transform: scale(1); }
             }
             
-            /* Hero Section - Nova */
+            /* Hero Section */
             .hero-section {
                 background: linear-gradient(135deg, var(--dark-blue) 0%, var(--medium-blue) 100%);
                 color: var(--text-light);
@@ -296,7 +297,7 @@
                 transform: scale(1.03);
             }
             
-            /* Main Content - Melhorado */
+            /* Main Content */
             main {
                 max-width: 1200px;
                 margin: 0 auto;
@@ -489,7 +490,7 @@
                 transform: none;
             }
             
-            /* Comentários Section - Nova */
+            /* Comentários Section */
             .comentarios {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -535,7 +536,7 @@
                 color: var(--medium-blue);
             }
             
-            /* Modais - Melhorado */
+            /* Modais */
             .modal {
                 display: none;
                 position: fixed;
@@ -644,7 +645,7 @@
                 font-size: 1.1rem;
             }
             
-            /* Cart Items - Melhorado */
+            /* Cart Items */
             .cart-item {
                 display: flex;
                 justify-content: space-between;
@@ -724,7 +725,7 @@
                 transform: scale(1.1);
             }
             
-            /* Cart Summary - Melhorado */
+            /* Cart Summary */
             .cart-summary {
                 margin-top: 20px;
                 padding-top: 20px;
@@ -746,7 +747,7 @@
                 border-top: 2px solid var(--gray-light);
             }
             
-            /* Shipping Section - MELHORADO COM SISTEMA DE FRETE */
+            /* Shipping Section */
             .shipping-section {
                 margin: 20px 0;
                 padding: 20px;
@@ -874,7 +875,7 @@
                 color: var(--gray-light);
             }
             
-            /* Footer - Melhorado */
+            /* Footer */
             footer {
                 background: linear-gradient(135deg, var(--dark-blue) 0%, var(--medium-blue) 100%);
                 color: var(--text-light);
@@ -968,7 +969,7 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
             
-            /* Newsletter - Nova */
+            /* Newsletter */
             .newsletter-form {
                 display: flex;
                 gap: 10px;
@@ -997,7 +998,7 @@
                 background: var(--accent-orange);
             }
             
-            /* Notification - Melhorado */
+            /* Notification */
             .notification {
                 position: fixed;
                 top: 20px;
@@ -1033,7 +1034,7 @@
                 }
             }
             
-            /* Loading - Melhorado */
+            /* Loading */
             .loading {
                 text-align: center;
                 padding: 3rem;
@@ -1055,19 +1056,140 @@
                 100% { transform: rotate(360deg); }
             }
             
-            /* Admin Panel Styles - Melhorado */
-            .admin-container {
-                max-width: 1200px;
-                margin: 2rem auto;
-                padding: 0 2rem;
+            /* ========== NOVO PAINEL ADMINISTRATIVO ========== */
+            .admin-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem;
+                backdrop-filter: blur(5px);
             }
             
-            .admin-panel {
+            .admin-modal.active {
+                display: flex;
+            }
+            
+            .admin-modal-content {
+                background-color: var(--white);
+                border-radius: var(--radius);
+                width: 95%;
+                max-width: 1200px;
+                max-height: 95vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+                position: relative;
+                animation: modalAppear 0.4s ease-out;
+            }
+            
+            .admin-header {
+                background: linear-gradient(135deg, var(--dark-blue) 0%, var(--medium-blue) 100%);
+                color: var(--text-light);
+                padding: 1.5rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: var(--radius) var(--radius) 0 0;
+            }
+            
+            .admin-header h2 {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 1.8rem;
+            }
+            
+            .admin-tabs {
+                display: flex;
+                background: var(--light-bg);
+                border-bottom: 1px solid var(--gray-light);
+            }
+            
+            .admin-tab {
+                padding: 1rem 1.5rem;
+                cursor: pointer;
+                font-weight: 600;
+                transition: var(--transition);
+                border-bottom: 3px solid transparent;
+            }
+            
+            .admin-tab.active {
+                border-bottom: 3px solid var(--accent-orange);
+                color: var(--accent-orange);
+                background: white;
+            }
+            
+            .admin-tab:hover:not(.active) {
+                background: rgba(182, 71, 35, 0.1);
+            }
+            
+            .admin-tab-content {
+                padding: 2rem;
+                display: none;
+            }
+            
+            .admin-tab-content.active {
+                display: block;
+                animation: fadeIn 0.5s ease;
+            }
+            
+            .admin-stats {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .stat-card {
+                background: white;
+                padding: 1.5rem;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                text-align: center;
+                transition: var(--transition);
+                border-top: 4px solid var(--accent-orange);
+            }
+            
+            .stat-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+            }
+            
+            .stat-value {
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: var(--accent-orange);
+                margin: 0.5rem 0;
+            }
+            
+            .stat-label {
+                color: var(--gray-medium);
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            
+            .admin-section {
                 background: white;
                 border-radius: var(--radius);
                 box-shadow: var(--shadow);
-                padding: 2rem;
+                padding: 1.5rem;
                 margin-bottom: 2rem;
+            }
+            
+            .admin-section h3 {
+                margin-bottom: 1.5rem;
+                color: var(--medium-blue);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 1.4rem;
             }
             
             .form-row {
@@ -1078,9 +1200,9 @@
             
             .admin-products-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 gap: 1.5rem;
-                margin-top: 2rem;
+                margin-top: 1.5rem;
             }
             
             .admin-product-card {
@@ -1090,6 +1212,7 @@
                 box-shadow: var(--shadow);
                 border-left: 4px solid var(--accent-orange);
                 transition: var(--transition);
+                position: relative;
             }
             
             .admin-product-card:hover {
@@ -1140,6 +1263,21 @@
                 color: white;
             }
             
+            .btn-info {
+                background-color: var(--info);
+                color: white;
+            }
+            
+            .btn-warning {
+                background-color: var(--warning);
+                color: white;
+            }
+            
+            .btn-danger {
+                background-color: var(--error);
+                color: white;
+            }
+            
             .image-preview {
                 margin-top: 10px;
                 max-width: 100%;
@@ -1148,7 +1286,161 @@
                 display: none;
             }
             
-            /* Login Page Styles - Melhorado */
+            /* Estilos para a tabela de pedidos */
+            .orders-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 1rem;
+            }
+            
+            .orders-table th,
+            .orders-table td {
+                padding: 1rem;
+                text-align: left;
+                border-bottom: 1px solid var(--gray-light);
+            }
+            
+            .orders-table th {
+                background-color: var(--light-bg);
+                font-weight: 600;
+                color: var(--medium-blue);
+            }
+            
+            .orders-table tr:hover {
+                background-color: rgba(0, 0, 0, 0.02);
+            }
+            
+            .status-badge {
+                padding: 5px 10px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            
+            .status-pending {
+                background-color: var(--warning);
+                color: white;
+            }
+            
+            .status-processing {
+                background-color: var(--info);
+                color: white;
+            }
+            
+            .status-delivering {
+                background-color: var(--success);
+                color: white;
+            }
+            
+            .order-actions {
+                display: flex;
+                gap: 5px;
+            }
+            
+            .order-details-btn {
+                background: none;
+                border: none;
+                color: var(--info);
+                cursor: pointer;
+                font-size: 1.1rem;
+                transition: var(--transition);
+            }
+            
+            .order-details-btn:hover {
+                transform: scale(1.1);
+            }
+            
+            /* Modal de detalhes do pedido */
+            .order-details-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                z-index: 1100;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem;
+                backdrop-filter: blur(5px);
+            }
+            
+            .order-details-modal.active {
+                display: flex;
+            }
+            
+            .order-details-content {
+                background-color: var(--white);
+                border-radius: var(--radius);
+                width: 90%;
+                max-width: 700px;
+                max-height: 90vh;
+                overflow-y: auto;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                position: relative;
+                animation: modalAppear 0.3s ease-out;
+            }
+            
+            .order-details-header {
+                background: linear-gradient(135deg, var(--dark-blue) 0%, var(--medium-blue) 100%);
+                color: var(--text-light);
+                padding: 1.5rem;
+                border-radius: var(--radius) var(--radius) 0 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .order-details-body {
+                padding: 1.5rem;
+            }
+            
+            .order-info-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .order-items {
+                margin: 1.5rem 0;
+            }
+            
+            .order-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--gray-light);
+            }
+            
+            .order-item:last-child {
+                border-bottom: none;
+            }
+            
+            .order-totals {
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+                border-top: 2px solid var(--gray-light);
+            }
+            
+            .order-total-line {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+            }
+            
+            .order-grand-total {
+                font-size: 1.3rem;
+                font-weight: bold;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--gray-light);
+            }
+            
+            /* Login Page Styles */
             .login-section {
                 display: flex;
                 justify-content: center;
@@ -1204,7 +1496,134 @@
                 color: var(--text-dark);
             }
             
-            /* Responsive Design - Melhorado */
+            /* Mobile Menu */
+            .mobile-menu-btn {
+                display: none;
+                background: none;
+                border: none;
+                color: var(--light-orange);
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .mobile-nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--dark-blue);
+                z-index: 999;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .mobile-nav.active {
+                display: flex;
+            }
+            
+            .mobile-nav a {
+                color: var(--light-orange);
+                text-decoration: none;
+                font-size: 1.5rem;
+                font-weight: 600;
+                transition: var(--transition);
+            }
+            
+            .mobile-nav a:hover {
+                transform: scale(1.1);
+            }
+            
+            .close-mobile-menu {
+                position: absolute;
+                top: 2rem;
+                right: 2rem;
+                background: none;
+                border: none;
+                color: var(--light-orange);
+                font-size: 2rem;
+                cursor: pointer;
+            }
+            
+            /* Modal de Confirmação de Status */
+            .status-confirm-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem;
+                backdrop-filter: blur(5px);
+            }
+            
+            .status-confirm-modal.active {
+                display: flex;
+            }
+            
+            .status-confirm-content {
+                background-color: var(--white);
+                padding: 2.5rem;
+                border-radius: var(--radius);
+                width: 100%;
+                max-width: 500px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                max-height: 90vh;
+                overflow-y: auto;
+                position: relative;
+                animation: modalAppear 0.3s ease-out;
+                text-align: center;
+            }
+            
+            .status-confirm-icon {
+                font-size: 4rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .status-processing-icon {
+                color: var(--info);
+            }
+            
+            .status-delivering-icon {
+                color: var(--success);
+            }
+            
+            .status-confirm-message {
+                margin-bottom: 2rem;
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+            
+            .status-confirm-buttons {
+                display: flex;
+                gap: 15px;
+                justify-content: center;
+            }
+            
+            .btn-whatsapp-confirm {
+                background-color: #25D366;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+            
+            .btn-skip {
+                background-color: var(--gray-light);
+                color: var(--text-dark);
+            }
+
+            /* Responsive Design */
             @media (max-width: 1024px) {
                 .products-grid, .admin-products-grid {
                     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -1219,27 +1638,38 @@
                 .header-bottom-side-left h1 {
                     font-size: 2.5rem;
                 }
+                
+                .admin-modal-content {
+                    width: 98%;
+                }
             }
             
             @media (max-width: 768px) {
                 header {
-                    flex-direction: column;
                     padding: 1rem;
-                    gap: 15px;
                 }
                 
                 .nav-links {
-                    flex-wrap: wrap;
-                    justify-content: center;
+                    display: none;
+                }
+                
+                .mobile-menu-btn {
+                    display: block;
                 }
                 
                 .nav-buttons {
-                    width: 100%;
-                    justify-content: center;
-                    flex-wrap: wrap;
+                    gap: 10px;
                 }
                 
-                main, .admin-container {
+                .logo-text {
+                    font-size: 1.5rem;
+                }
+                
+                .logo-img {
+                    height: 50px;
+                }
+                
+                main {
                     padding: 1.5rem;
                 }
                 
@@ -1288,15 +1718,56 @@
                 .newsletter-form {
                     flex-direction: column;
                 }
+                
+                .admin-tabs {
+                    flex-wrap: wrap;
+                }
+                
+                .admin-tab {
+                    flex: 1;
+                    min-width: 120px;
+                    text-align: center;
+                    padding: 0.8rem 1rem;
+                }
+                
+                .admin-stats {
+                    grid-template-columns: 1fr 1fr;
+                }
+                
+                .orders-table {
+                    display: block;
+                    overflow-x: auto;
+                }
+                
+                .order-info-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .order-actions {
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                
+                .admin-header h2 {
+                    font-size: 1.5rem;
+                }
+                
+                .admin-section {
+                    padding: 1rem;
+                }
+                
+                .status-confirm-buttons {
+                    flex-direction: column;
+                }
             }
             
             @media (max-width: 480px) {
                 .logo-text {
-                    font-size: 1.5rem;
+                    font-size: 1.3rem;
                 }
                 
                 .logo-img {
-                    height: 50px;
+                    height: 40px;
                 }
                 
                 .btn {
@@ -1334,374 +1805,30 @@
                 .comentarios {
                     grid-template-columns: 1fr;
                 }
-            }
-
-            .page-transition {
-                transition: opacity 0.3s ease, transform 0.4s ease;
-            }
-            
-            .page-hidden {
-                opacity: 0;
-                transform: translateY(20px);
-                pointer-events: none;
-            }
-            
-            .page-visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            
-            .fade-in-up {
-                animation: fadeInUp 0.6s ease forwards;
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            
-            @keyframes fadeInUp {
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            
-            .stagger-item {
-                animation: fadeInUp 0.6s ease forwards;
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            
-            .pulse-glow {
-                animation: pulseGlow 2s infinite;
-            }
-            
-            @keyframes pulseGlow {
-                0% {
-                    box-shadow: 0 0 5px rgba(182, 71, 35, 0.4);
-                }
-                50% {
-                    box-shadow: 0 0 20px rgba(182, 71, 35, 0.8);
-                }
-                100% {
-                    box-shadow: 0 0 5px rgba(182, 71, 35, 0.4);
-                }
-            }
-            
-            .slide-in-right {
-                animation: slideInRight 0.5s ease forwards;
-            }
-            
-            @keyframes slideInRight {
-                from {
-                    opacity: 0;
-                    transform: translateX(50px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-            
-            .floating {
-                animation: floating 3s ease-in-out infinite;
-            }
-            
-            @keyframes floating {
-                0% {
-                    transform: translateY(0px);
-                }
-                50% {
-                    transform: translateY(-10px);
-                }
-                100% {
-                    transform: translateY(0px);
-                }
-            }
-            
-            /* Melhorias no Painel Admin */
-            .admin-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 2rem;
-                padding-bottom: 1rem;
-                border-bottom: 2px solid var(--gray-light);
-            }
-            
-            .admin-stats {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 1rem;
-                margin-bottom: 2rem;
-            }
-            
-            .stat-card {
-                background: white;
-                padding: 1.5rem;
-                border-radius: var(--radius);
-                box-shadow: var(--shadow);
-                text-align: center;
-                transition: var(--transition);
-                border-left: 4px solid var(--accent-orange);
-            }
-            
-            .stat-card:hover {
-                transform: translateY(-5px);
-                box-shadow: var(--shadow-hover);
-            }
-            
-            .stat-value {
-                font-size: 2rem;
-                font-weight: bold;
-                color: var(--accent-orange);
-                margin: 0.5rem 0;
-            }
-            
-            .stat-label {
-                color: var(--gray-medium);
-                font-size: 0.9rem;
-            }
-            
-            .admin-search {
-                margin-bottom: 2rem;
-            }
-            
-            .search-box {
-                display: flex;
-                gap: 10px;
-            }
-            
-            .search-box input {
-                flex: 1;
-                padding: 12px 15px;
-                border: 1px solid var(--gray-light);
-                border-radius: var(--radius);
-                font-size: 1rem;
-            }
-            
-            .search-box button {
-                background: var(--light-orange);
-                color: white;
-                border: none;
-                padding: 12px 20px;
-                border-radius: var(--radius);
-                cursor: pointer;
-                transition: var(--transition);
-            }
-            
-            .search-box button:hover {
-                background: var(--accent-orange);
-            }
-            
-            .admin-filters {
-                display: flex;
-                gap: 1rem;
-                margin-bottom: 1.5rem;
-                flex-wrap: wrap;
-            }
-            
-            .filter-btn {
-                padding: 8px 16px;
-                background: var(--gray-light);
-                border: none;
-                border-radius: 20px;
-                cursor: pointer;
-                transition: var(--transition);
-            }
-            
-            .filter-btn.active {
-                background: var(--accent-orange);
-                color: white;
-            }
-            
-            .admin-product-card {
-                position: relative;
-                overflow: hidden;
-            }
-            
-            .product-status {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                padding: 5px 10px;
-                border-radius: 20px;
-                font-size: 0.8rem;
-                font-weight: bold;
-                z-index: 2;
-            }
-            
-            .status-in-stock {
-                background: var(--success);
-                color: white;
-            }
-            
-            .status-low-stock {
-                background: var(--warning);
-                color: white;
-            }
-            
-            .status-out-of-stock {
-                background: var(--error);
-                color: white;
-            }
-            
-            .edit-form-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.7);
-                display: none;
-                justify-content: center;
-                align-items: center;
-                z-index: 2000;
-                backdrop-filter: blur(5px);
-            }
-            
-            .edit-form-overlay.active {
-                display: flex;
-                animation: fadeIn 0.3s ease;
-            }
-            
-            .edit-form-container {
-                background: white;
-                border-radius: var(--radius);
-                padding: 2rem;
-                width: 90%;
-                max-width: 600px;
-                max-height: 90vh;
-                overflow-y: auto;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                animation: slideInUp 0.4s ease;
-            }
-            
-            @keyframes slideInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            
-            .form-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 1.5rem;
-                padding-bottom: 1rem;
-                border-bottom: 1px solid var(--gray-light);
-            }
-            
-            .close-edit-form {
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                cursor: pointer;
-                color: var(--gray-medium);
-                transition: var(--transition);
-            }
-            
-            .close-edit-form:hover {
-                color: var(--error);
-            }
-            
-            .delete-confirmation {
-                background: rgba(230, 57, 70, 0.1);
-                border: 1px solid var(--error);
-                border-radius: var(--radius);
-                padding: 1rem;
-                margin-top: 1rem;
-                display: none;
-            }
-            
-            .delete-confirmation.active {
-                display: block;
-                animation: fadeIn 0.3s ease;
-            }
-            
-            .confirmation-buttons {
-                display: flex;
-                gap: 10px;
-                margin-top: 1rem;
-            }
-            
-            .btn-danger {
-                background: var(--error);
-                color: white;
-            }
-            
-            .btn-success {
-                background: var(--success);
-                color: white;
-            }
-            
-            /* Animações para elementos da loja */
-            .product-card {
-                animation: fadeInUp 0.5s ease forwards;
-                opacity: 0;
-            }
-            
-            .comment {
-                animation: fadeInUp 0.6s ease forwards;
-                opacity: 0;
-            }
-            
-            .hero-section {
-                animation: fadeIn 1s ease, slideInUp 0.8s ease;
-            }
-            
-            /* Melhorias no carregamento */
-            .skeleton-loading {
-                background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-                background-size: 200% 100%;
-                animation: loading 1.5s infinite;
-                border-radius: var(--radius);
-            }
-            
-            @keyframes loading {
-                0% {
-                    background-position: 200% 0;
-                }
-                100% {
-                    background-position: -200% 0;
-                }
-            }
-            
-            .skeleton-product {
-                height: 350px;
-                margin-bottom: 25px;
-            }
-            
-            /* Melhorias na responsividade */
-            @media (max-width: 768px) {
+                
                 .admin-stats {
                     grid-template-columns: 1fr;
                 }
                 
-                .admin-header {
-                    flex-direction: column;
-                    gap: 1rem;
-                    text-align: center;
+                .form-row {
+                    grid-template-columns: 1fr;
                 }
                 
-                .search-box {
-                    flex-direction: column;
+                .hero-section {
+                    padding: 2rem 1rem;
+                }
+                
+                .admin-tab {
+                    min-width: 100px;
+                    font-size: 0.9rem;
+                    padding: 0.7rem 0.8rem;
+                }
+                
+                .status-confirm-content {
+                    padding: 1.5rem 1rem;
                 }
             }
-                
-            /* Utility Classes - Melhorado */
-            .text-center {
-                text-align: center;
-            }
-            
-            .mt-1 { margin-top: 1rem; }
-            .mt-2 { margin-top: 2rem; }
-            .mb-1 { margin-bottom: 1rem; }
-            .mb-2 { margin-bottom: 2rem; }
-            
+
             .hidden {
                 display: none;
             }
@@ -1724,6 +1851,11 @@
                     <img src="logo.png" alt="Geek Games Logo" class="logo-img">
                     <span class="logo-text">Geek Games</span>
                 </a>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
                 <ul class="nav-links">
                     <li><a href="#gamerProducts">Gamers</a></li>
                     <li><a href="#geekProducts">Geeks</a></li>
@@ -1733,7 +1865,7 @@
                 </ul>
                 <div class="nav-buttons">
                     <button class="btn btn-admin" id="adminBtn">
-                        <i class="fas fa-cog"></i> Área Admin
+                        <i class="fas fa-cog"></i> <span class="btn-text">Admin</span>
                     </button>
                     <div class="cart-icon" id="cartIcon">
                         <i class="fas fa-shopping-cart"></i>
@@ -1741,6 +1873,18 @@
                     </div>
                 </div>
             </header>
+            
+            <!-- Menu Mobile -->
+            <div class="mobile-nav" id="mobileNav">
+                <button class="close-mobile-menu" id="closeMobileMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+                <a href="#gamerProducts">Gamers</a>
+                <a href="#geekProducts">Geeks</a>
+                <a href="#popularProducts">Populares</a>
+                <a href="#moreProducts">Mais Produtos</a>
+                <a href="#comentarios-1">Comentários</a>
+            </div>
             
             <section class="hero-section">
                 <div class="header-inner-content">
@@ -1907,7 +2051,7 @@
             </section>
         </div>
         
-        <!-- Modal do Carrinho - ATUALIZADO COM SISTEMA DE FRETE -->
+        <!-- Modal do Carrinho -->
         <div class="modal" id="cartModal">
             <div class="modal-content">
                 <h2><i class="fas fa-shopping-cart"></i> Meu Carrinho</h2>
@@ -1918,7 +2062,7 @@
                     </div>
                 </div>
                 
-                <!-- Seção de Cálculo de Frete - NOVA -->
+                <!-- Seção de Cálculo de Frete -->
                 <div class="shipping-section" id="shippingSection" style="display: none;">
                     <h3><i class="fas fa-truck"></i> Calcular Frete</h3>
                     <div class="shipping-form">
@@ -1956,143 +2100,205 @@
             </div>
         </div>
         
-        <!-- Modal de Admin -->
-        <div class="modal" id="adminModal">
-            <div class="modal-content">
+        <!-- NOVO Modal de Admin -->
+        <div class="admin-modal" id="adminModal">
+            <div class="admin-modal-content">
                 <div class="admin-header">
-                    <h2><i class="fas fa-cog"></i> Painel Administrativo</h2>
-                    <button class="btn btn-cancel" id="cancelProductBtn">
+                    <h2><i class="fas fa-cog"></i> Painel Administrativo - Geek Games</h2>
+                    <button class="btn btn-cancel" id="closeAdminBtn">
                         <i class="fas fa-times"></i> Fechar
                     </button>
                 </div>
                 
-                <div class="admin-stats" id="adminStats">
-                    <!-- Estatísticas serão preenchidas via JavaScript -->
+                <div class="admin-tabs">
+                    <div class="admin-tab active" data-tab="dashboard">Dashboard</div>
+                    <div class="admin-tab" data-tab="products">Produtos</div>
+                    <div class="admin-tab" data-tab="orders">Pedidos</div>
+                    <div class="admin-tab" data-tab="add-product">Adicionar Produto</div>
                 </div>
                 
-                <div class="admin-panel">
-                    <div class="admin-search">
-                        <div class="search-box">
-                            <input type="text" id="adminSearch" placeholder="Buscar produtos...">
-                            <button id="searchBtn"><i class="fas fa-search"></i></button>
+                <!-- Dashboard Tab -->
+                <div class="admin-tab-content active" id="dashboard-tab">
+                    <div class="admin-stats">
+                        <div class="stat-card">
+                            <div class="stat-label">Total de Produtos</div>
+                            <div class="stat-value" id="totalProducts">0</div>
+                            <i class="fas fa-box-open fa-2x" style="color: var(--accent-orange); margin-top: 10px;"></i>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Pedidos Pendentes</div>
+                            <div class="stat-value" id="pendingOrders">0</div>
+                            <i class="fas fa-clock fa-2x" style="color: var(--warning); margin-top: 10px;"></i>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Pedidos em Andamento</div>
+                            <div class="stat-value" id="processingOrders">0</div>
+                            <i class="fas fa-sync-alt fa-2x" style="color: var(--info); margin-top: 10px;"></i>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Pedidos em Entrega</div>
+                            <div class="stat-value" id="deliveringOrders">0</div>
+                            <i class="fas fa-truck fa-2x" style="color: var(--success); margin-top: 10px;"></i>
                         </div>
                     </div>
                     
-                    <h3>Adicionar Novo Produto</h3>
-                    <form id="productForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="productName">Nome do Produto</label>
-                                <input type="text" id="productName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="productPrice">Preço (R$)</label>
-                                <input type="number" id="productPrice" step="0.01" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="productCategory">Categoria</label>
-                                <select id="productCategory" required>
-                                    <option value="gamer">Gamer</option>
-                                    <option value="geek">Geek</option>
-                                    <option value="popular">Popular</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="productStock">Estoque</label>
-                                <input type="number" id="productStock" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="productDescription">Descrição</label>
-                            <textarea id="productDescription" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="productImage">URL da Imagem</label>
-                            <input type="url" id="productImage">
-                            <img id="imagePreview" class="image-preview" src="" alt="Prévia da imagem">
-                        </div>
-                        <div class="modal-buttons">
-                            <button type="button" class="btn btn-cancel" id="resetFormBtn">Limpar Formulário</button>
-                            <button type="submit" class="btn btn-submit">Adicionar Produto</button>
-                        </div>
-                    </form>
+                    <div class="admin-section">
+                        <h3><i class="fas fa-chart-line"></i> Visão Geral</h3>
+                        <p>Bem-vindo ao painel administrativo da Geek Games. Utilize as abas acima para gerenciar produtos e pedidos.</p>
+                    </div>
                 </div>
                 
-                <div class="admin-products" id="adminProductsList">
-                    <h3>Produtos Cadastrados <span id="productsCount">(0)</span></h3>
-                    <div class="admin-products-grid" id="adminProductsGrid">
-                        <!-- Produtos admin serão carregados aqui -->
+                <!-- Produtos Tab -->
+                <div class="admin-tab-content" id="products-tab">
+                    <div class="admin-section">
+                        <h3><i class="fas fa-boxes"></i> Gerenciar Produtos</h3>
+                        <div class="admin-products-grid" id="adminProductsGrid">
+                            <!-- Produtos serão carregados aqui -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pedidos Tab -->
+                <div class="admin-tab-content" id="orders-tab">
+                    <div class="admin-section">
+                        <h3><i class="fas fa-shopping-bag"></i> Gerenciar Pedidos</h3>
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>Data</th>
+                                    <th>Itens</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <!-- Pedidos serão carregados aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Adicionar Produto Tab -->
+                <div class="admin-tab-content" id="add-product-tab">
+                    <div class="admin-section">
+                        <h3><i class="fas fa-plus-circle"></i> Adicionar Novo Produto</h3>
+                        <form id="productForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="productName">Nome do Produto</label>
+                                    <input type="text" id="productName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productPrice">Preço (R$)</label>
+                                    <input type="number" id="productPrice" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="productCategory">Categoria</label>
+                                    <select id="productCategory" required>
+                                        <option value="gamer">Gamer</option>
+                                        <option value="geek">Geek</option>
+                                        <option value="popular">Popular</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productStock">Estoque</label>
+                                    <input type="number" id="productStock" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="productDescription">Descrição</label>
+                                <textarea id="productDescription" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="productImage">URL da Imagem</label>
+                                <input type="url" id="productImage">
+                                <img id="imagePreview" class="image-preview" src="" alt="Prévia da imagem">
+                            </div>
+                            <div class="modal-buttons">
+                                <button type="button" class="btn btn-cancel" id="resetFormBtn">Limpar Formulário</button>
+                                <button type="submit" class="btn btn-submit">Adicionar Produto</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Overlay de Edição de Produto -->
-        <div class="edit-form-overlay" id="editProductOverlay">
-            <div class="edit-form-container">
-                <div class="form-header">
-                    <h3><i class="fas fa-edit"></i> Editar Produto</h3>
-                    <button class="close-edit-form" id="closeEditForm">
+        <!-- Modal de Detalhes do Pedido -->
+        <div class="order-details-modal" id="orderDetailsModal">
+            <div class="order-details-content">
+                <div class="order-details-header">
+                    <h3><i class="fas fa-file-alt"></i> Detalhes do Pedido</h3>
+                    <button class="btn btn-cancel" id="closeOrderDetailsBtn">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                <form id="editProductForm">
-                    <input type="hidden" id="editProductId">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="editProductName">Nome do Produto</label>
-                            <input type="text" id="editProductName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editProductPrice">Preço (R$)</label>
-                            <input type="number" id="editProductPrice" step="0.01" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="editProductCategory">Categoria</label>
-                            <select id="editProductCategory" required>
-                                <option value="gamer">Gamer</option>
-                                <option value="geek">Geek</option>
-                                <option value="popular">Popular</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="editProductStock">Estoque</label>
-                            <input type="number" id="editProductStock" required>
-                        </div>
+                <div class="order-details-body" id="orderDetailsBody">
+                    <!-- Detalhes do pedido serão carregados aqui -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal de Edição de Pedido -->
+        <div class="modal" id="editOrderModal">
+            <div class="modal-content">
+                <h2><i class="fas fa-edit"></i> Editar Pedido</h2>
+                <form id="editOrderForm">
+                    <div class="form-group">
+                        <label for="editCustomerName">Nome do Cliente</label>
+                        <input type="text" id="editCustomerName" required>
                     </div>
                     <div class="form-group">
-                        <label for="editProductDescription">Descrição</label>
-                        <textarea id="editProductDescription" rows="3"></textarea>
+                        <label for="editCustomerContact">Contato</label>
+                        <input type="text" id="editCustomerContact" required>
                     </div>
                     <div class="form-group">
-                        <label for="editProductImage">URL da Imagem</label>
-                        <input type="url" id="editProductImage">
-                        <img id="editImagePreview" class="image-preview" src="" alt="Prévia da imagem">
+                        <label for="editCustomerEmail">E-mail</label>
+                        <input type="email" id="editCustomerEmail">
                     </div>
-                    <div class="delete-confirmation" id="deleteConfirmation">
-                        <p><strong>Tem certeza que deseja excluir este produto?</strong></p>
-                        <p>Esta ação não pode ser desfeita.</p>
-                        <div class="confirmation-buttons">
-                            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
-                                <i class="fas fa-trash"></i> Sim, Excluir
-                            </button>
-                            <button type="button" class="btn btn-cancel" id="cancelDeleteBtn">
-                                <i class="fas fa-times"></i> Cancelar
-                            </button>
-                        </div>
+                    <div class="form-group">
+                        <label for="editShippingZipcode">CEP</label>
+                        <input type="text" id="editShippingZipcode">
+                    </div>
+                    <div class="form-group">
+                        <label for="editStatus">Status</label>
+                        <select id="editStatus" required>
+                            <option value="pending">Pendente</option>
+                            <option value="processing">Em Andamento</option>
+                            <option value="delivering">Em Entrega</option>
+                        </select>
                     </div>
                     <div class="modal-buttons">
-                        <button type="button" class="btn btn-danger" id="showDeleteBtn">
-                            <i class="fas fa-trash"></i> Excluir Produto
-                        </button>
-                        <button type="button" class="btn btn-cancel" id="cancelEditBtn">Cancelar</button>
-                        <button type="submit" class="btn btn-success">Salvar Alterações</button>
+                        <button type="button" class="btn btn-cancel" id="cancelEditOrderBtn">Cancelar</button>
+                        <button type="submit" class="btn btn-submit">Salvar Alterações</button>
                     </div>
                 </form>
+            </div>
+        </div>
+        
+        <!-- Modal de Confirmação de Status -->
+        <div class="status-confirm-modal" id="statusConfirmModal">
+            <div class="status-confirm-content">
+                <div class="status-confirm-icon" id="statusConfirmIcon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h2 id="statusConfirmTitle">Atualizar Status do Pedido</h2>
+                <p class="status-confirm-message" id="statusConfirmMessage">
+                    Você está prestes a atualizar o status deste pedido. Deseja enviar uma notificação para o cliente via WhatsApp?
+                </p>
+                <div class="status-confirm-buttons">
+                    <button class="btn btn-skip" id="skipNotificationBtn">
+                        <i class="fas fa-times"></i> Apenas Atualizar Status
+                    </button>
+                    <button class="btn btn-whatsapp-confirm" id="sendNotificationBtn">
+                        <i class="fab fa-whatsapp"></i> Enviar WhatsApp
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -2121,7 +2327,7 @@
             // Inicializar Supabase
             const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
             
-            // Elementos da DOM - ADICIONADOS OS NOVOS ELEMENTOS DE FRETE
+            // Elementos da DOM
             const storePage = document.getElementById('store-page');
             const loginPage = document.getElementById('login-page');
             const adminBtn = document.getElementById('adminBtn');
@@ -2139,26 +2345,63 @@
             const cartShipping = document.getElementById('cartShipping');
             const cartTotal = document.getElementById('cartTotal');
             const adminModal = document.getElementById('adminModal');
+            const closeAdminBtn = document.getElementById('closeAdminBtn');
             const productForm = document.getElementById('productForm');
-            const cancelProductBtn = document.getElementById('cancelProductBtn');
             const notification = document.getElementById('notification');
             const exploreBtn = document.getElementById('exploreBtn');
             const imagePreview = document.getElementById('imagePreview');
             const productImageInput = document.getElementById('productImage');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
             
-            // Elementos do sistema de frete - NOVOS
+            // Elementos do sistema de frete
             const shippingSection = document.getElementById('shippingSection');
             const shippingZipCode = document.getElementById('shippingZipCode');
             const calculateShippingBtn = document.getElementById('calculateShippingBtn');
             const shippingResults = document.getElementById('shippingResults');
             
-            // Estado da aplicação - ADICIONADAS VARIÁVEIS DE FRETE
+            // Elementos do novo painel admin
+            const adminTabs = document.querySelectorAll('.admin-tab');
+            const adminTabContents = document.querySelectorAll('.admin-tab-content');
+            const ordersTableBody = document.getElementById('ordersTableBody');
+            const orderDetailsModal = document.getElementById('orderDetailsModal');
+            const closeOrderDetailsBtn = document.getElementById('closeOrderDetailsBtn');
+            const orderDetailsBody = document.getElementById('orderDetailsBody');
+            
+            // Elementos de edição de pedido
+            const editOrderModal = document.getElementById('editOrderModal');
+            const editOrderForm = document.getElementById('editOrderForm');
+            const cancelEditOrderBtn = document.getElementById('cancelEditOrderBtn');
+            
+            // Elementos de confirmação de status
+            const statusConfirmModal = document.getElementById('statusConfirmModal');
+            const statusConfirmIcon = document.getElementById('statusConfirmIcon');
+            const statusConfirmTitle = document.getElementById('statusConfirmTitle');
+            const statusConfirmMessage = document.getElementById('statusConfirmMessage');
+            const skipNotificationBtn = document.getElementById('skipNotificationBtn');
+            const sendNotificationBtn = document.getElementById('sendNotificationBtn');
+            
+            // Elementos de estatísticas
+            const totalProducts = document.getElementById('totalProducts');
+            const pendingOrders = document.getElementById('pendingOrders');
+            const processingOrders = document.getElementById('processingOrders');
+            const deliveringOrders = document.getElementById('deliveringOrders');
+            
+            // Estado da aplicação
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             let products = [];
+            let orders = [];
             let isAdmin = false;
             let selectedShipping = null;
             let shippingOptions = [];
-            
+            let currentEditingOrderId = null;
+            let pendingStatusUpdate = {
+                orderId: null,
+                newStatus: null,
+                orderData: null
+            };
+
             // Função para formatar CEP
             function formatZipCode(zipCode) {
                 zipCode = zipCode.replace(/\D/g, '');
@@ -2176,10 +2419,8 @@
             
             // Função para calcular frete baseado no CEP (simulação)
             async function calculateShipping(zipCode) {
-                // Remove o hífen do CEP para a API
                 const cleanZipCode = zipCode.replace('-', '');
                 
-                // Mostrar loading
                 shippingResults.innerHTML = `
                     <div class="shipping-loading">
                         <i class="fas fa-spinner fa-spin"></i>
@@ -2187,12 +2428,9 @@
                     </div>
                 `;
                 
-                // Simulação de cálculo de frete baseado na região
                 try {
-                    // Simula um delay de rede
                     await new Promise(resolve => setTimeout(resolve, 1500));
                     
-                    // Determina a região baseada no CEP (simulação)
                     const firstDigit = cleanZipCode.charAt(0);
                     let region = '';
                     
@@ -2203,7 +2441,6 @@
                     else if (['7', '8', '9'].includes(firstDigit)) region = 'sul';
                     else region = 'default';
                     
-                    // Preços de frete simulados por região
                     const shippingPrices = {
                         'norte': { sedex: 45.90, pac: 25.50, economico: 18.90 },
                         'nordeste': { sedex: 42.50, pac: 22.90, economico: 16.50 },
@@ -2213,7 +2450,6 @@
                         'default': { sedex: 40.00, pac: 22.00, economico: 16.00 }
                     };
                     
-                    // Prazos de entrega simulados
                     const deliveryTimes = {
                         'norte': { sedex: '5-7 dias', pac: '10-12 dias', economico: '12-15 dias' },
                         'nordeste': { sedex: '4-6 dias', pac: '8-10 dias', economico: '10-12 dias' },
@@ -2226,7 +2462,6 @@
                     const regionData = shippingPrices[region];
                     const deliveryData = deliveryTimes[region];
                     
-                    // Opções de frete
                     shippingOptions = [
                         {
                             id: 'economico',
@@ -2251,11 +2486,9 @@
                         }
                     ];
                     
-                    // Verificar se tem frete grátis (acima de R$ 100)
                     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
                     const hasFreeShipping = subtotal > 100;
                     
-                    // Renderizar opções de frete
                     let shippingHTML = '<div class="shipping-options">';
                     
                     if (hasFreeShipping) {
@@ -2293,7 +2526,6 @@
                     shippingHTML += '</div>';
                     shippingResults.innerHTML = shippingHTML;
                     
-                    // Adicionar event listeners para os radios
                     document.querySelectorAll('input[name="shipping"]').forEach(radio => {
                         radio.addEventListener('change', function() {
                             selectedShipping = {
@@ -2450,7 +2682,6 @@
                 clearCartBtn.style.display = 'block';
                 shippingSection.style.display = 'block';
                 
-                // Resetar frete quando o carrinho é renderizado
                 selectedShipping = null;
                 shippingResults.innerHTML = '';
                 updateCartTotals();
@@ -2478,44 +2709,153 @@
                 showNotification('Carrinho limpo!', 'warning');
             }
             
-            // Função para finalizar pedido via WhatsApp
-            function checkout() {
+            // FUNÇÃO CORRIGIDA: Salvar pedido no banco de dados
+            async function saveOrder(orderData) {
+                try {
+                    console.log('Salvando pedido no banco...', orderData);
+                    
+                    // 1. Primeiro cria o pedido principal
+                    const { data: order, error: orderError } = await supabase
+                        .from('orders')
+                        .insert([{
+                            customer_name: orderData.customer_name,
+                            customer_contact: orderData.customer_contact,
+                            customer_email: orderData.customer_email,
+                            shipping_zipcode: orderData.shipping_zipcode,
+                            shipping_method: orderData.shipping_method,
+                            shipping_cost: orderData.shipping_cost,
+                            subtotal: orderData.subtotal,
+                            total: orderData.total,
+                            status: 'pending',
+                            notes: orderData.notes
+                        }])
+                        .select()
+                        .single();
+
+                    if (orderError) {
+                        console.error('Erro ao criar pedido:', orderError);
+                        throw orderError;
+                    }
+
+                    console.log('Pedido criado:', order);
+
+                    // 2. Agora salva os itens do pedido
+                    const orderItems = cart.map(item => ({
+                        order_id: order.id,
+                        product_id: item.id,
+                        product_name: item.name,
+                        product_price: item.price,
+                        quantity: item.quantity,
+                        total_price: item.price * item.quantity
+                    }));
+
+                    const { error: itemsError } = await supabase
+                        .from('order_items')
+                        .insert(orderItems);
+
+                    if (itemsError) {
+                        console.error('Erro ao salvar itens do pedido:', itemsError);
+                        throw itemsError;
+                    }
+
+                    console.log('Itens do pedido salvos com sucesso');
+                    
+                    // 3. Limpar carrinho após sucesso
+                    clearCart();
+                    
+                    return order;
+
+                } catch (error) {
+                    console.error('Erro completo ao salvar pedido:', error);
+                    throw error;
+                }
+            }
+            
+            // FUNÇÃO CORRIGIDA: Finalizar pedido via WhatsApp
+            async function checkout() {
                 if (cart.length === 0) {
                     showNotification('Seu carrinho está vazio!', 'error');
                     return;
                 }
-                
-                let message = "Olá! Gostaria de fazer um pedido:\n\n";
-                
-                cart.forEach(item => {
-                    message += `- ${item.name} (Qtd: ${item.quantity}) - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
-                });
-                
+
+                if (!selectedShipping) {
+                    showNotification('Por favor, calcule o frete primeiro!', 'error');
+                    return;
+                }
+
+                // Coletar informações do cliente (em um sistema real, isso viria de um formulário)
+                const customerName = prompt("Por favor, digite seu nome:") || "Cliente";
+                const customerContact = prompt("Por favor, digite seu WhatsApp:") || "Não informado";
+                const customerEmail = prompt("Por favor, digite seu e-mail:") || "cliente@email.com";
+                const zipCode = shippingZipCode.value || "00000-000";
+
+                // Se o usuário cancelar os prompts, interromper o processo
+                if (!customerName || !customerContact) {
+                    showNotification('Pedido cancelado. Informações do cliente são obrigatórias.', 'error');
+                    return;
+                }
+
                 const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                const shipping = selectedShipping ? selectedShipping.price : 0;
-                const total = subtotal + shipping;
-                
-                message += `\nSubtotal: R$ ${subtotal.toFixed(2)}`;
-                message += `\nFrete: ${shipping === 0 ? 'Grátis' : 'R$ ' + shipping.toFixed(2)}`;
-                message += `\nTotal: R$ ${total.toFixed(2)}`;
-                
-                if (selectedShipping) {
-                    message += `\nTipo de entrega: ${selectedShipping.name}`;
+                const shippingCost = selectedShipping.price;
+                const total = subtotal + shippingCost;
+
+                try {
+                    // Preparar dados do pedido
+                    const orderData = {
+                        customer_name: customerName,
+                        customer_contact: customerContact,
+                        customer_email: customerEmail,
+                        shipping_zipcode: zipCode,
+                        shipping_method: selectedShipping.name,
+                        shipping_cost: shippingCost,
+                        subtotal: subtotal,
+                        total: total,
+                        notes: 'Pedido via WhatsApp'
+                    };
+
+                    // Salvar no banco de dados
+                    const savedOrder = await saveOrder(orderData);
+                    
+                    // Preparar mensagem para WhatsApp
+                    let message = `🎮 *NOVO PEDIDO - GEEK GAMES* 🎮\n\n`;
+                    message += `*Pedido #${savedOrder.id}*\n`;
+                    message += `*Data:* ${new Date().toLocaleDateString('pt-BR')}\n\n`;
+                    message += `*📦 ITENS DO PEDIDO:*\n`;
+                    
+                    cart.forEach(item => {
+                        message += `• ${item.name} (Qtd: ${item.quantity}) - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+                    });
+                    
+                    message += `\n*💰 RESUMO DO PEDIDO:*\n`;
+                    message += `Subtotal: R$ ${subtotal.toFixed(2)}\n`;
+                    message += `Frete (${selectedShipping.name}): ${shippingCost === 0 ? 'Grátis' : 'R$ ' + shippingCost.toFixed(2)}\n`;
+                    message += `*Total: R$ ${total.toFixed(2)}*\n\n`;
+                    message += `*🚚 INFORMAÇÕES DE ENTREGA:*\n`;
+                    message += `CEP: ${zipCode}\n`;
+                    message += `Método: ${selectedShipping.name}\n\n`;
+                    message += `*👤 DADOS DO CLIENTE:*\n`;
+                    message += `Nome: ${customerName}\n`;
+                    message += `Contato: ${customerContact}\n`;
+                    message += `E-mail: ${customerEmail}\n\n`;
+                    message += `_Pedido gerado automaticamente via Geek Games_`;
+
+                    // Número da loja - SUBSTITUA PELO NÚMERO REAL DA SUA LOJA
+                    const phone = "5511999999999";
+                    const encodedMessage = encodeURIComponent(message);
+                    const url = `https://wa.me/${phone}?text=${encodedMessage}`;
+                    
+                    showNotification('Pedido salvo! Redirecionando para WhatsApp...');
+                    
+                    // Abrir WhatsApp após um breve delay
+                    setTimeout(() => {
+                        window.open(url, '_blank');
+                        cartModal.classList.remove('active');
+                    }, 1500);
+                    
+                } catch (error) {
+                    console.error('Erro ao finalizar pedido:', error);
+                    showNotification('Erro ao salvar pedido! Tente novamente.', 'error');
                 }
-                
-                // Adicionar CEP se foi calculado frete
-                const zipCode = shippingZipCode.value;
-                if (zipCode) {
-                    message += `\nCEP de entrega: ${zipCode}`;
-                }
-                
-                message += `\n\n*Pedido realizado via Geek Games*`;
-                
-                const phone = "5511999999999"; // Substitua pelo número da loja
-                const encodedMessage = encodeURIComponent(message);
-                const url = `https://wa.me/${phone}?text=${encodedMessage}`;
-                
-                window.open(url, '_blank');
             }
             
             // Função para carregar produtos do Supabase
@@ -2529,7 +2869,6 @@
                     if (error) {
                         console.error('Erro ao carregar produtos:', error);
                         showNotification('Erro ao carregar produtos do banco de dados!', 'error');
-                        // Carregar produtos de exemplo em caso de erro
                         loadSampleProducts();
                         return;
                     }
@@ -2541,6 +2880,440 @@
                     console.error('Erro ao carregar produtos:', error);
                     showNotification('Erro de conexão com o banco de dados!', 'error');
                     loadSampleProducts();
+                }
+            }
+            
+            // FUNÇÃO CORRIGIDA: Carregar pedidos do Supabase
+            async function loadOrders() {
+                try {
+                    console.log('Carregando pedidos...');
+                    
+                    // Carregar pedidos com seus itens
+                    const { data: ordersData, error: ordersError } = await supabase
+                        .from('orders')
+                        .select(`
+                            *,
+                            order_items (*)
+                        `)
+                        .order('created_at', { ascending: false });
+
+                    if (ordersError) {
+                        console.error('Erro ao carregar pedidos:', ordersError);
+                        showNotification('Erro ao carregar pedidos!', 'error');
+                        return;
+                    }
+
+                    console.log('Pedidos carregados:', ordersData);
+                    orders = ordersData || [];
+                    renderOrders();
+                    updateOrderStats();
+                    
+                } catch (error) {
+                    console.error('Erro ao carregar pedidos:', error);
+                    showNotification('Erro de conexão com o banco de dados!', 'error');
+                }
+            }
+            
+            // Função para atualizar estatísticas de pedidos
+            function updateOrderStats() {
+                const pending = orders.filter(order => order.status === 'pending').length;
+                const processing = orders.filter(order => order.status === 'processing').length;
+                const delivering = orders.filter(order => order.status === 'delivering').length;
+                
+                totalProducts.textContent = products.length;
+                pendingOrders.textContent = pending;
+                processingOrders.textContent = processing;
+                deliveringOrders.textContent = delivering;
+            }
+            
+            // FUNÇÃO CORRIGIDA: Renderizar pedidos na tabela
+            function renderOrders() {
+                if (orders.length === 0) {
+                    ordersTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 2rem;">
+                                Nenhum pedido encontrado.
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                let ordersHTML = '';
+                
+                orders.forEach(order => {
+                    const orderDate = new Date(order.created_at);
+                    const formattedDate = orderDate.toLocaleDateString('pt-BR');
+                    
+                    let statusClass = '';
+                    let statusText = '';
+                    
+                    switch(order.status) {
+                        case 'pending':
+                            statusClass = 'status-pending';
+                            statusText = 'Pendente';
+                            break;
+                        case 'processing':
+                            statusClass = 'status-processing';
+                            statusText = 'Em Andamento';
+                            break;
+                        case 'delivering':
+                            statusClass = 'status-delivering';
+                            statusText = 'Em Entrega';
+                            break;
+                        default:
+                            statusClass = 'status-pending';
+                            statusText = 'Pendente';
+                    }
+                    
+                    // Calcular quantidade total de itens
+                    const totalItems = order.order_items ? 
+                        order.order_items.reduce((sum, item) => sum + item.quantity, 0) : 0;
+                    
+                    ordersHTML += `
+                        <tr>
+                            <td><strong>#${order.id}</strong></td>
+                            <td>
+                                <div>${order.customer_name}</div>
+                                <small style="color: #666;">${order.customer_contact}</small>
+                            </td>
+                            <td>${formattedDate}</td>
+                            <td>${totalItems} itens</td>
+                            <td>R$ ${order.total.toFixed(2)}</td>
+                            <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                            <td>
+                                <div class="order-actions">
+                                    <button class="order-details-btn" onclick="viewOrderDetails(${order.id})" title="Ver detalhes">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="order-details-btn" onclick="editOrder(${order.id})" title="Editar pedido">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="order-details-btn" onclick="updateOrderStatus(${order.id}, 'processing')" title="Marcar como Em Andamento" ${order.status === 'processing' || order.status === 'delivering' ? 'disabled' : ''}>
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                    <button class="order-details-btn" onclick="updateOrderStatus(${order.id}, 'delivering')" title="Marcar como Em Entrega" ${order.status === 'delivering' ? 'disabled' : ''}>
+                                        <i class="fas fa-truck"></i>
+                                    </button>
+                                    <button class="order-details-btn" onclick="deleteOrder(${order.id})" title="Excluir pedido" style="color: var(--error);">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                ordersTableBody.innerHTML = ordersHTML;
+            }
+            
+            // FUNÇÃO CORRIGIDA: Visualizar detalhes do pedido
+            async function viewOrderDetails(orderId) {
+                try {
+                    const { data: order, error } = await supabase
+                        .from('orders')
+                        .select(`
+                            *,
+                            order_items (*)
+                        `)
+                        .eq('id', orderId)
+                        .single();
+                    
+                    if (error) throw error;
+                    
+                    const orderDate = new Date(order.created_at);
+                    const formattedDate = orderDate.toLocaleDateString('pt-BR');
+                    const formattedTime = orderDate.toLocaleTimeString('pt-BR');
+                    
+                    let statusText = '';
+                    switch(order.status) {
+                        case 'pending':
+                            statusText = 'Pendente';
+                            break;
+                        case 'processing':
+                            statusText = 'Em Andamento';
+                            break;
+                        case 'delivering':
+                            statusText = 'Em Entrega';
+                            break;
+                        default:
+                            statusText = 'Pendente';
+                    }
+                    
+                    let orderDetailsHTML = `
+                        <div class="order-info-grid">
+                            <div>
+                                <h4>📋 Informações do Pedido</h4>
+                                <p><strong>ID:</strong> #${order.id}</p>
+                                <p><strong>Data:</strong> ${formattedDate} às ${formattedTime}</p>
+                                <p><strong>Status:</strong> ${statusText}</p>
+                                <p><strong>Método de Entrega:</strong> ${order.shipping_method}</p>
+                            </div>
+                            <div>
+                                <h4>👤 Informações do Cliente</h4>
+                                <p><strong>Nome:</strong> ${order.customer_name}</p>
+                                <p><strong>Contato:</strong> ${order.customer_contact}</p>
+                                <p><strong>E-mail:</strong> ${order.customer_email || 'Não informado'}</p>
+                                <p><strong>CEP:</strong> ${order.shipping_zipcode || 'Não informado'}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="order-items">
+                            <h4>🛒 Itens do Pedido</h4>
+                    `;
+                    
+                    if (order.order_items && order.order_items.length > 0) {
+                        order.order_items.forEach(item => {
+                            orderDetailsHTML += `
+                                <div class="order-item">
+                                    <div>
+                                        <strong>${item.product_name}</strong>
+                                        <div>Quantidade: ${item.quantity}</div>
+                                        <div>Preço unitário: R$ ${item.product_price.toFixed(2)}</div>
+                                    </div>
+                                    <div>
+                                        <strong>R$ ${item.total_price.toFixed(2)}</strong>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        orderDetailsHTML += `<p>Nenhum item encontrado para este pedido.</p>`;
+                    }
+                    
+                    orderDetailsHTML += `
+                        </div>
+                        
+                        <div class="order-totals">
+                            <h4>💰 Resumo Financeiro</h4>
+                            <div class="order-total-line">
+                                <span>Subtotal:</span>
+                                <span>R$ ${order.subtotal.toFixed(2)}</span>
+                            </div>
+                            <div class="order-total-line">
+                                <span>Frete:</span>
+                                <span>${order.shipping_cost === 0 ? 'Grátis' : 'R$ ' + order.shipping_cost.toFixed(2)}</span>
+                            </div>
+                            <div class="order-grand-total">
+                                <span>Total:</span>
+                                <span>R$ ${order.total.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    orderDetailsBody.innerHTML = orderDetailsHTML;
+                    orderDetailsModal.classList.add('active');
+                    
+                } catch (error) {
+                    console.error('Erro ao carregar detalhes do pedido:', error);
+                    showNotification('Erro ao carregar detalhes do pedido!', 'error');
+                }
+            }
+            
+            // Função para editar pedido
+            async function editOrder(orderId) {
+                try {
+                    const { data: order, error } = await supabase
+                        .from('orders')
+                        .select('*')
+                        .eq('id', orderId)
+                        .single();
+                    
+                    if (error) throw error;
+                    
+                    // Preencher o formulário com os dados atuais
+                    document.getElementById('editCustomerName').value = order.customer_name;
+                    document.getElementById('editCustomerContact').value = order.customer_contact;
+                    document.getElementById('editCustomerEmail').value = order.customer_email || '';
+                    document.getElementById('editShippingZipcode').value = order.shipping_zipcode || '';
+                    document.getElementById('editStatus').value = order.status;
+                    
+                    currentEditingOrderId = orderId;
+                    editOrderModal.classList.add('active');
+                    
+                } catch (error) {
+                    console.error('Erro ao carregar dados do pedido:', error);
+                    showNotification('Erro ao carregar dados do pedido!', 'error');
+                }
+            }
+            
+            // FUNÇÃO CORRIGIDA: Atualizar status do pedido com confirmação
+            async function updateOrderStatus(orderId, newStatus) {
+                try {
+                    // Buscar dados completos do pedido
+                    const { data: order, error } = await supabase
+                        .from('orders')
+                        .select(`
+                            *,
+                            order_items (*)
+                        `)
+                        .eq('id', orderId)
+                        .single();
+                    
+                    if (error) throw error;
+                    
+                    // Armazenar dados para uso posterior
+                    pendingStatusUpdate = {
+                        orderId: orderId,
+                        newStatus: newStatus,
+                        orderData: order
+                    };
+                    
+                    // Mostrar modal de confirmação
+                    showStatusConfirmModal(newStatus, order);
+                    
+                } catch (error) {
+                    console.error('Erro ao carregar dados do pedido:', error);
+                    showNotification('Erro ao carregar dados do pedido!', 'error');
+                }
+            }
+            
+            // Função para mostrar modal de confirmação de status
+            function showStatusConfirmModal(newStatus, order) {
+                const statusConfig = {
+                    'processing': {
+                        title: 'Marcar como Em Andamento',
+                        icon: 'fas fa-sync-alt status-processing-icon',
+                        message: `Deseja notificar ${order.customer_name} que o pedido #${order.id} está sendo preparado?`,
+                        whatsappMessage: `🔄 *STATUS ATUALIZADO - GEEK GAMES* 🔄\n\nOlá ${order.customer_name}! \n\nSeu pedido *#${order.id}* acabou de ser atualizado para *EM ANDAMENTO*!\n\n📦 *Detalhes do Pedido:*\n• Itens: ${order.order_items.length} produto(s)\n• Total: R$ ${order.total.toFixed(2)}\n\nNossa equipe está preparando seu pedido com todo cuidado. Em breve ele estará a caminho! 🚚\n\nAcompanhe o status pelo nosso site ou entre em contato conosco.\n\n_Geek Games - Sua loja gamer favorita_ 🎮`
+                    },
+                    'delivering': {
+                        title: 'Marcar como Em Entrega',
+                        icon: 'fas fa-truck status-delivering-icon',
+                        message: `Deseja notificar ${order.customer_name} que o pedido #${order.id} saiu para entrega?`,
+                        whatsappMessage: `🚚 *SEU PEDIDO SAIU PARA ENTREGA!* 🚚\n\nOlá ${order.customer_name}! \n\nÓtimas notícias! Seu pedido *#${order.id}* acabou de sair para entrega! 🎉\n\n📦 *Detalhes da Entrega:*\n• Método: ${order.shipping_method}\n• Previsão: 1-3 dias úteis\n• Total: R$ ${order.total.toFixed(2)}\n\nFique atento ao seu telefone e e-mail para mais atualizações!\n\nSe tiver alguma dúvida, estamos à disposição.\n\n_Geek Games - Sua loja gamer favorita_ 🎮`
+                    }
+                };
+                
+                const config = statusConfig[newStatus];
+                
+                if (!config) {
+                    console.error('Status não reconhecido:', newStatus);
+                    return;
+                }
+                
+                statusConfirmTitle.textContent = config.title;
+                statusConfirmIcon.className = `status-confirm-icon ${config.icon}`;
+                statusConfirmMessage.textContent = config.message;
+                
+                // Configurar botão do WhatsApp
+                sendNotificationBtn.onclick = () => sendWhatsAppNotification(config.whatsappMessage, order.customer_contact);
+                
+                // Configurar botão de pular notificação
+                skipNotificationBtn.onclick = () => updateStatusWithoutNotification();
+                
+                statusConfirmModal.classList.add('active');
+            }
+            
+            // Função para enviar notificação via WhatsApp
+            function sendWhatsAppNotification(message, customerContact) {
+                try {
+                    // Limpar e formatar o número de telefone
+                    const cleanNumber = customerContact.replace(/\D/g, '');
+                    
+                    // Verificar se o número tem o formato correto
+                    let phoneNumber;
+                    if (cleanNumber.length === 11) {
+                        // Formato: 11999999999 -> 5511999999999
+                        phoneNumber = '55' + cleanNumber;
+                    } else if (cleanNumber.length === 13 && cleanNumber.startsWith('55')) {
+                        // Já está no formato internacional
+                        phoneNumber = cleanNumber;
+                    } else {
+                        showNotification('Número de telefone inválido!', 'error');
+                        return;
+                    }
+                    
+                    const encodedMessage = encodeURIComponent(message);
+                    const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                    
+                    // Fechar modal
+                    statusConfirmModal.classList.remove('active');
+                    
+                    // Atualizar status no banco
+                    updateStatusInDatabase();
+                    
+                    // Abrir WhatsApp
+                    setTimeout(() => {
+                        window.open(url, '_blank');
+                        showNotification('Status atualizado e WhatsApp aberto!');
+                    }, 500);
+                    
+                } catch (error) {
+                    console.error('Erro ao enviar WhatsApp:', error);
+                    showNotification('Erro ao enviar mensagem!', 'error');
+                    // Atualizar status mesmo com erro no WhatsApp
+                    updateStatusInDatabase();
+                }
+            }
+            
+            // Função para atualizar status sem enviar notificação
+            async function updateStatusWithoutNotification() {
+                statusConfirmModal.classList.remove('active');
+                await updateStatusInDatabase();
+                showNotification('Status atualizado com sucesso!');
+            }
+            
+            // Função para atualizar status no banco de dados
+            async function updateStatusInDatabase() {
+                try {
+                    const { orderId, newStatus } = pendingStatusUpdate;
+                    
+                    const { data, error } = await supabase
+                        .from('orders')
+                        .update({ status: newStatus })
+                        .eq('id', orderId)
+                        .select();
+                    
+                    if (error) throw error;
+                    
+                    // Recarregar pedidos
+                    await loadOrders();
+                    
+                    // Limpar estado pendente
+                    pendingStatusUpdate = {
+                        orderId: null,
+                        newStatus: null,
+                        orderData: null
+                    };
+                    
+                } catch (error) {
+                    console.error('Erro ao atualizar status do pedido:', error);
+                    showNotification('Erro ao atualizar status do pedido!', 'error');
+                }
+            }
+            
+            // Função para excluir pedido
+            async function deleteOrder(orderId) {
+                if (!confirm('Tem certeza que deseja excluir este pedido? Esta ação não pode ser desfeita.')) {
+                    return;
+                }
+                
+                try {
+                    // Primeiro excluir os itens do pedido
+                    const { error: itemsError } = await supabase
+                        .from('order_items')
+                        .delete()
+                        .eq('order_id', orderId);
+                    
+                    if (itemsError) throw itemsError;
+                    
+                    // Depois excluir o pedido
+                    const { error: orderError } = await supabase
+                        .from('orders')
+                        .delete()
+                        .eq('id', orderId);
+                    
+                    if (orderError) throw orderError;
+                    
+                    showNotification('Pedido excluído com sucesso!');
+                    
+                    // Recarregar pedidos
+                    await loadOrders();
+                    
+                } catch (error) {
+                    console.error('Erro ao excluir pedido:', error);
+                    showNotification('Erro ao excluir pedido!', 'error');
                 }
             }
             
@@ -2571,7 +3344,7 @@
                         price: 399.99,
                         stock: 8,
                         category: "gamer",
-                        description: "Headset surround com microfone retrátil.",
+                        description: "Headset surround 7.1 com microfone retrátil.",
                         image_url: "https://images.unsplash.com/photo-1599669454699-248893623440?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
                     },
                     {
@@ -2581,7 +3354,25 @@
                         stock: 25,
                         category: "geek",
                         description: "Action figure colecionável do Homem-Aranha.",
-                        image_url: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                        image_url: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                    },
+                    {
+                        id: 5,
+                        name: "Camiseta Star Wars",
+                        price: 49.99,
+                        stock: 30,
+                        category: "geek",
+                        description: "Camiseta 100% algodão com estampa Star Wars.",
+                        image_url: "https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                    },
+                    {
+                        id: 6,
+                        name: "Monitor Gamer 144Hz",
+                        price: 1299.99,
+                        stock: 5,
+                        category: "gamer",
+                        description: "Monitor 24 polegadas, 144Hz, 1ms.",
+                        image_url: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
                     }
                 ];
                 renderProducts();
@@ -2589,26 +3380,11 @@
             
             // Função para renderizar produtos
             function renderProducts() {
-                // Renderizar produtos por categoria
-                renderProductSection(
-                    products.filter(p => p.category === 'gamer'), 
-                    'gamer-products-grid'
-                );
-                
-                renderProductSection(
-                    products.filter(p => p.category === 'geek'), 
-                    'geek-products-grid'
-                );
-                
-                renderProductSection(
-                    products.filter(p => p.category === 'popular'), 
-                    'popular-products-grid'
-                );
-                
-                renderProductSection(
-                    products, 
-                    'more-products-grid'
-                );
+                renderProductSection(products.filter(p => p.category === 'gamer'), 'gamer-products-grid');
+                renderProductSection(products.filter(p => p.category === 'geek'), 'geek-products-grid');
+                renderProductSection(products.filter(p => p.category === 'popular'), 'popular-products-grid');
+                renderProductSection(products, 'more-products-grid');
+                renderAdminProducts();
             }
             
             // Função para renderizar uma seção de produtos
@@ -2649,27 +3425,8 @@
                 `).join('');
             }
             
-            // Função para fazer login
-            async function login(email, password) {
-                try {
-                    // Verificação simples de login (substitua por autenticação real se necessário)
-                    if (email === 'admin@geekgames.com' && password === 'admin123') {
-                        isAdmin = true;
-                        storePage.classList.add('hidden');
-                        loginPage.classList.add('hidden');
-                        adminModal.classList.add('active');
-                        loadAdminProducts();
-                        showNotification('Login realizado com sucesso!');
-                    } else {
-                        throw new Error('Credenciais inválidas');
-                    }
-                } catch (error) {
-                    showNotification('Erro ao fazer login: ' + error.message, 'error');
-                }
-            }
-            
-            // Função para carregar produtos no painel admin
-            async function loadAdminProducts() {
+            // Função para renderizar produtos no painel admin
+            function renderAdminProducts() {
                 const adminProductsGrid = document.getElementById('adminProductsGrid');
                 
                 if (products.length === 0) {
@@ -2694,12 +3451,31 @@
                             <button class="btn btn-primary" onclick="editProduct(${product.id})">
                                 <i class="fas fa-edit"></i> Editar
                             </button>
-                            <button class="btn btn-secondary" onclick="deleteProduct(${product.id})">
+                            <button class="btn btn-danger" onclick="deleteProduct(${product.id})">
                                 <i class="fas fa-trash"></i> Excluir
                             </button>
                         </div>
                     </div>
                 `).join('');
+            }
+            
+            // Função para fazer login
+            async function login(email, password) {
+                try {
+                    if (email === 'admin@geekgames.com' && password === 'admin123') {
+                        isAdmin = true;
+                        storePage.classList.add('hidden');
+                        loginPage.classList.add('hidden');
+                        adminModal.classList.add('active');
+                        loadProducts();
+                        loadOrders();
+                        showNotification('Login realizado com sucesso!');
+                    } else {
+                        throw new Error('Credenciais inválidas');
+                    }
+                } catch (error) {
+                    showNotification('Erro ao fazer login: ' + error.message, 'error');
+                }
             }
             
             // Função para adicionar produto via admin
@@ -2716,11 +3492,8 @@
                     productForm.reset();
                     imagePreview.style.display = 'none';
                     
-                    // Recarregar produtos
                     await loadProducts();
-                    if (isAdmin) {
-                        loadAdminProducts();
-                    }
+                    switchAdminTab('products');
                     
                 } catch (error) {
                     console.error('Erro ao adicionar produto:', error);
@@ -2744,6 +3517,7 @@
                         imagePreview.style.display = 'block';
                     }
                     
+                    switchAdminTab('add-product');
                     showNotification(`Editando produto: ${product.name}`, 'warning');
                 }
             }
@@ -2764,14 +3538,20 @@
                     
                     showNotification('Produto excluído com sucesso!');
                     await loadProducts();
-                    if (isAdmin) {
-                        loadAdminProducts();
-                    }
                     
                 } catch (error) {
                     console.error('Erro ao excluir produto:', error);
                     showNotification('Erro ao excluir produto: ' + error.message, 'error');
                 }
+            }
+            
+            // Função para alternar entre abas do admin
+            function switchAdminTab(tabName) {
+                adminTabs.forEach(tab => tab.classList.remove('active'));
+                adminTabContents.forEach(content => content.classList.remove('active'));
+                
+                document.querySelector(`.admin-tab[data-tab="${tabName}"]`).classList.add('active');
+                document.getElementById(`${tabName}-tab`).classList.add('active');
             }
             
             // Event Listeners
@@ -2816,7 +3596,7 @@
                 
                 checkoutBtn.addEventListener('click', checkout);
                 
-                // Sistema de Frete - NOVOS EVENT LISTENERS
+                // Sistema de Frete
                 shippingZipCode.addEventListener('input', (e) => {
                     e.target.value = formatZipCode(e.target.value);
                 });
@@ -2837,7 +3617,6 @@
                     calculateShipping(zipCode);
                 });
                 
-                // Permitir calcular frete pressionando Enter
                 shippingZipCode.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') {
                         calculateShippingBtn.click();
@@ -2845,10 +3624,18 @@
                 });
                 
                 // Admin
-                cancelProductBtn.addEventListener('click', () => {
+                closeAdminBtn.addEventListener('click', () => {
                     adminModal.classList.remove('active');
                     storePage.classList.remove('hidden');
                     isAdmin = false;
+                });
+                
+                // Navegação entre abas do admin
+                adminTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const tabName = tab.getAttribute('data-tab');
+                        switchAdminTab(tabName);
+                    });
                 });
                 
                 productForm.addEventListener('submit', (e) => {
@@ -2883,6 +3670,62 @@
                     });
                 });
                 
+                // Fechar modal de detalhes do pedido
+                closeOrderDetailsBtn.addEventListener('click', () => {
+                    orderDetailsModal.classList.remove('active');
+                });
+                
+                // Menu mobile
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileNav.classList.add('active');
+                });
+                
+                closeMobileMenu.addEventListener('click', () => {
+                    mobileNav.classList.remove('active');
+                });
+                
+                // Fechar menu mobile ao clicar em um link
+                document.querySelectorAll('.mobile-nav a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileNav.classList.remove('active');
+                    });
+                });
+                
+                // Edição de pedido
+                editOrderForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    try {
+                        const updatedData = {
+                            customer_name: document.getElementById('editCustomerName').value,
+                            customer_contact: document.getElementById('editCustomerContact').value,
+                            customer_email: document.getElementById('editCustomerEmail').value,
+                            shipping_zipcode: document.getElementById('editShippingZipcode').value,
+                            status: document.getElementById('editStatus').value
+                        };
+                        
+                        const { data, error } = await supabase
+                            .from('orders')
+                            .update(updatedData)
+                            .eq('id', currentEditingOrderId)
+                            .select();
+                        
+                        if (error) throw error;
+                        
+                        showNotification('Pedido atualizado com sucesso!');
+                        editOrderModal.classList.remove('active');
+                        await loadOrders();
+                        
+                    } catch (error) {
+                        console.error('Erro ao atualizar pedido:', error);
+                        showNotification('Erro ao atualizar pedido!', 'error');
+                    }
+                });
+                
+                cancelEditOrderBtn.addEventListener('click', () => {
+                    editOrderModal.classList.remove('active');
+                });
+                
                 // Fechar modais ao clicar fora
                 window.addEventListener('click', (e) => {
                     if (e.target === cartModal) {
@@ -2895,15 +3738,31 @@
                             isAdmin = false;
                         }
                     }
+                    if (e.target === orderDetailsModal) {
+                        orderDetailsModal.classList.remove('active');
+                    }
+                    if (e.target === editOrderModal) {
+                        editOrderModal.classList.remove('active');
+                    }
+                    if (e.target === statusConfirmModal) {
+                        statusConfirmModal.classList.remove('active');
+                    }
+                    if (e.target === mobileNav) {
+                        mobileNav.classList.remove('active');
+                    }
                 });
             });
-            
-            // Expor funções para o escopo global para uso nos eventos onclick
+
+            // Expor funções para o escopo global
             window.addToCart = addToCart;
             window.removeFromCart = removeFromCart;
             window.updateQuantity = updateQuantity;
             window.editProduct = editProduct;
             window.deleteProduct = deleteProduct;
+            window.viewOrderDetails = viewOrderDetails;
+            window.updateOrderStatus = updateOrderStatus;
+            window.editOrder = editOrder;
+            window.deleteOrder = deleteOrder;
         </script>
     </body>
 </html>
